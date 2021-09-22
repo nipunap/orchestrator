@@ -25,7 +25,7 @@ install_webtools() {
 		echo "installing webtools in $host"
 		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'apt-get --assume-yes update'
 		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'apt-get --assume-yes install nginx-light php7.2-fpm'
-		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'apt-get --assume-yes install python3'
+		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'apt-get --assume-yes install python3 git'
 		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'systemctl start nginx'
 		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'systemctl enable nginx'
 		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'systemctl start php7.2-fpm.service'
