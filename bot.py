@@ -37,7 +37,7 @@ def install_deb_packages():
         install_deb(line)
 
 if __name__ == "__main__":
-    git_pull()
+    botlib.git_pull()
     install_deb_packages()
     copy_nginx_file()
     copy_index_php()

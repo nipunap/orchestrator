@@ -16,5 +16,5 @@ def restart_service(service):
 def git_pull():
     bot_home = '/root/orchestrator'
     g = git.cmd.Git(bot_home)
-    g.heads.master.checkout()
+    g.heads.main.checkout()
     g.pull()
