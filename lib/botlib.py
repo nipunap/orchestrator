@@ -16,5 +16,5 @@ def restart_service(service):
 def git_pull():
     bot_home = '/root/orchestrator'
     g = git.cmd.Git(bot_home)
-    g.checkout('main')
+    g.checkout('nipuna/orchestrtor')
     g.pull()
