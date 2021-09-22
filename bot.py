@@ -36,7 +36,7 @@ def install_deb_packages():
     for line in lines:
         install_deb(line)
 
-if __name__ == __main__:
+if __name__ == "__main__":
     git_pull()
     install_deb_packages()
     copy_nginx_file()
