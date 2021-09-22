@@ -15,7 +15,7 @@ def remove_deb(package):
             print (package + " not installed so not removed")
     try:
         cache.commit()
-    except Exception, arg:
+    except Exception as arg:
         print >> sys.stderr, "Sorry, package removal failed [{err}]".format(err=str(arg))
 
 
@@ -33,5 +33,5 @@ def install_deb(package):
 
         try:
             cache.commit()
-        except Exception, arg:
+        except Exception as arg:
             print >> sys.stderr, "Sorry, package installation failed [{err}]".format(err=str(arg))
