@@ -7,7 +7,7 @@ from lib import debhandler
 def copy_nginx_file():
     # nginx configuration files
     dst_confile='/etc/nginx/sites-available/default'
-    src_confile='nginx/default.nginx'
+    src_confile='/root/orchestrator/nginx/default.nginx'
     #compare config files
     check = filecmp.cmp(src_confile, dst_confile)
     #copy files if has a diff
@@ -20,7 +20,7 @@ def copy_nginx_file():
 def copy_index_php():
     # nginx configuration files
     dst_confile='/var/www/html/index.php'
-    src_confile='nginx/index.php'
+    src_confile='/root/orchestrator/nginx/index.php'
     #compare config files
     check = filecmp.cmp(src_confile, dst_confile)
     #copy files if has a diff
@@ -31,7 +31,7 @@ def copy_index_php():
 
 def install_deb_packages():
     # get the linux packages list that need to install to the server
-    with open('linux/packages_install.txt') as f:
+    with open('/root/orchestrator/linux/packages_install.txt') as f:
         lines = f.readlines()
     for line in lines:
         debhandler.install_deb(line)
