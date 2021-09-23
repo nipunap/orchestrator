@@ -46,4 +46,5 @@ automatically copying to `nginx` configuration folder.
   botlib.file_permission(dst_confile, 0o744)
   botlib.file_ownership(dst_confile, 0, 0)
   ```
-- Install dabian packages from remotely
+- Install Debian packages from remotely
+  Software packages that required to install to remote servers, need to define in _linux/packages_install.txt_ file.
