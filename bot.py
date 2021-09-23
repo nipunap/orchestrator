@@ -13,7 +13,7 @@ def copy_nginx_file():
     #copy files if has a diff
     if (check):
         os.system("cp {} {}".format(src_confile,dst_confile))
-        botlib.file_permission(dst_confile, '0o744')
+        botlib.file_permission(dst_confile, 0o744)
         botlib.file_ownership(dst_confile, 'root', 'root')
         botlib.restart_service('nginx')
 
@@ -26,7 +26,7 @@ def copy_index_php():
     #copy files if has a diff
     if (check):
         os.system("cp {} {}".format(src_confile,dst_confile))
-        botlib.file_permission(dst_confile, '0o744')
+        botlib.file_permission(dst_confile, 0o744)
         botlib.file_ownership(dst_confile, 'root', 'root')
 
 def install_deb_packages():
