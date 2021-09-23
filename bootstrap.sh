@@ -17,20 +17,25 @@ verify_configs(){
 	fi
 }
 
+# run commands remote node
+run_remote(){
+	ssh -i ~/.ssh/id_slack_rsa -A root@$host $1
+}
+
 # install webtools such as nginx and php
 install_webtools() {
 	echo "${BROWN}Installing webtools${NC}"
 	for host in $(echo $SERVER_IPS);
 	do
 		echo "installing webtools in $host"
-		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'apt-get --assume-yes update'
-		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'apt-get --assume-yes install nginx-light php7.2-fpm'
-		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'apt-get --assume-yes install python3 git python-pip3'
-		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'systemctl start nginx'
-		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'systemctl enable nginx'
-		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'systemctl start php7.2-fpm.service'
-		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'systemctl enable php7.2-fpm.service'
-		ssh -i ~/.ssh/id_slack_rsa -A root@$host 'pip3 install gitpython'
+		run_remote 'apt-get --assume-yes update'
+		run_remote 'apt-get --assume-yes install nginx-light php7.2-fpm'
+		run_remote 'apt-get --assume-yes install python3 git python3-pip'
+		run_remote 'systemctl start nginx'
+		run_remote 'systemctl enable nginx'
+		run_remote 'systemctl start php7.2-fpm.service'
+		run_remote 'systemctl enable php7.2-fpm.service'
+		run_remote 'pip3 install gitpython'
 	done
 }
 
@@ -47,17 +52,23 @@ setup_keyless_ssh(){
 # add a cronjob
 set_cronjob(){
 	echo "${BROWN}Setup cronjob${NC}"
-	#bot cron to run every 30mins
-	echo "0-59/2 * * * * python3 /root/orchestrator/bot.py" > /tmp/crons_list
-	#install new cron file
-	crontab /tmp/crons_list
-	rm /tmp/crons_list
+	for host in $(echo $SERVER_IPS);
+	do
+		#bot cron to run every 30mins
+		run_remote 'echo 0-59/2 \* \* \* \* python3 /root/orchestrator/bot.py > /tmp/crons_list'
+		#install new cron file
+		run_remote 'crontab /tmp/crons_list'
+		run_remote 'rm /tmp/crons_list'
+	done
 }
 
 # get git clone
 git_clone(){
-	cd /root
-	git clone https://github.com/nipunap/orchestrator.git
+	echo "${BROWN}Clonning github repo${NC}"
+	for host in $(echo $SERVER_IPS);
+	do
+		run_remote 'cd /root; mv orchestrator orchestrator_$(date +%Y-%m-%d); git clone https://github.com/nipunap/orchestrator.git'
+	done
 }
 
 #########
