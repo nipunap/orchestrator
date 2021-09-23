@@ -21,7 +21,7 @@ git clone https://github.com/nipunap/orchestrator.git
 ```
 
 Next step is, add server IPs to `SERVER_IPS="54.242.46.111 54.87.16.101"` in _configs_ file. Then run _bootstrap.sh_ file
-in order to bootstrap the linux packages and github clone. Use following command to bootstrap.
+in order to bootstrap the linux packages and github clone. Use following command to bootstrap from your laptop command prompt. It will prompt remote server root password for one time.
 ```
 sh bootstrap.sh
 ```
