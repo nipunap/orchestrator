@@ -12,7 +12,7 @@ def copy_nginx_file():
     check = filecmp.cmp(src_confile, dst_confile)
     #copy files if has a diff
     if (check):
-        os.system("mv {} {}".format(src_confile,dst_confile))
+        os.system("cp -f {} {}".format(src_confile,dst_confile))
         botlib.file_permission(dst_confile, 0o744)
         botlib.file_ownership(dst_confile, 0, 0)
         botlib.restart_service('nginx')
@@ -25,7 +25,7 @@ def copy_index_php():
     check = filecmp.cmp(src_confile, dst_confile)
     #copy files if has a diff
     if (check):
-        os.system("mv {} {}".format(src_confile,dst_confile))
+        os.system("cp -f {} {}".format(src_confile,dst_confile))
         botlib.file_permission(dst_confile, 0o744)
         botlib.file_ownership(dst_confile, 0, 0)
 
