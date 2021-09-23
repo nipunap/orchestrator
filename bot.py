@@ -37,6 +37,7 @@ def install_deb_packages():
         debhandler.install_deb(line)
 
 if __name__ == "__main__":
+    os.chdir('/root/orchestrator')
     botlib.git_pull()
     install_deb_packages()
     copy_nginx_file()
