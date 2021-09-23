@@ -1,7 +1,7 @@
 import os
 import git
 
-def file_permission(file, permission, owner):
+def file_permission(file, permission):
     # change file permission
     os.chmod(file, permission)
 
