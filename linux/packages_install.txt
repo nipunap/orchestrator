@@ -1,0 +1,2 @@
+nginx-light
+php7.2-fpm
