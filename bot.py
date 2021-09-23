@@ -14,7 +14,7 @@ def copy_nginx_file():
     if (check):
         os.system("cp {} {}".format(src_confile,dst_confile))
         botlib.file_permission(dst_confile, 0o744)
-        botlib.file_ownership(dst_confile, 'root', 'root')
+        botlib.file_ownership(dst_confile, 0, 0)
         botlib.restart_service('nginx')
 
 def copy_index_php():
@@ -27,7 +27,7 @@ def copy_index_php():
     if (check):
         os.system("cp {} {}".format(src_confile,dst_confile))
         botlib.file_permission(dst_confile, 0o744)
-        botlib.file_ownership(dst_confile, 'root', 'root')
+        botlib.file_ownership(dst_confile, 0, 0)
 
 def install_deb_packages():
     # get the linux packages list that need to install to the server
