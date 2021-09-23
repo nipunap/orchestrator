@@ -33,3 +33,17 @@ Also it is adding a cronjob for _bot.py_ file to execute every 30mins.
 
 Every run of _bot.py_ script will install packages defined in _package_install.txt_ file and also if there is a config file change
 automatically copying to `nginx` configuration folder.
+
+## Features
+
+- Change NGINX config file remotely in many server nodes
+  Merge a PR to main branch with new changes in _nginx/default.nginx_ file.
+- Change the webapp in index.php
+  Merge a PR to main branch with new changes in _nginx/index.php_ file.
+- Set file permissions
+  File permissions can set using following lines. Refer _bot.py_ file for more details.
+  ```
+  botlib.file_permission(dst_confile, 0o744)
+  botlib.file_ownership(dst_confile, 0, 0)
+  ```
+- Install dabian packages from remotely
